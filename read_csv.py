@@ -32,7 +32,7 @@ def open_dataframes(source = "/home/sagnikb/PycharmProjects/Pyspark/*.csv123", o
                 n_unique_elements = len(unique_list)
                 unique_fraction = n_unique_elements/ n_elements
                 worksheet.write(i, 3, "Fraction of unique elements")
-                worksheet.write(i, 4, unique_fraction)
+                worksheet.write(i, 4, unique_fraction)   #Prints the fraction of unique elements in each key
 
                 unique_df = pd.DataFrame(data = unique_list)  #Prints the unique elements in each key
                 unique_df.to_excel(excel_writer = writer, sheet_name = 'Sheet3', startcol = (3*i + 1))
@@ -40,11 +40,16 @@ def open_dataframes(source = "/home/sagnikb/PycharmProjects/Pyspark/*.csv123", o
                 value_counts = key_column.value_counts()
                 value_counts.to_excel(excel_writer = writer, sheet_name = 'Sheet4', startcol = (3*i + 1))         #Prints the counts of each value that the elements under the key have
 
+                n_NaNs = key_column.isnull().sum()
+                NaN_fraction = n_NaNs/n_elements
+                worksheet.write(i, 6, "Fraction of null elements")
+                worksheet.write(i, 7, NaN_fraction)
+
                 i += 1
 
 
-            NaNs = df.apply(lambda x: sum(x.isnull()), axis = 0)
-            NaNs.to_excel(excel_writer = writer, sheet_name = 'Sheet5', startcol = 0)    #Prints the number of null valued data-points in the dataset
+
+            #Prints the number of null valued data-points in the dataset
 
             writer.save()
         file_count += 1
