@@ -28,16 +28,16 @@ def open_dataframes(source = "/home/sagnikb/PycharmProjects/Pyspark/*.csv123", o
                 worksheet.write(i, 0, key_column.name)
 
                 unique_list = pd.DataFrame(data = key_column.unique())  #Prints the unique elements in each key
-                unique_list.to_excel(excel_writer = writer, sheet_name = 'Sheet3', startcol = 3*i + 1)
+                unique_list.to_excel(excel_writer = writer, sheet_name = 'Sheet3', startcol = (3*i + 1))
 
                 column_counts =  key_column.value_counts()
-                column_counts.to_excel(excel_writer = writer, sheet_name = 'Sheet4', startcol = 3*i + 1)        #Prints the count of elements under each key
+                column_counts.to_excel(excel_writer = writer, sheet_name = 'Sheet4', startcol = (3*i + 1))        #Prints the count of elements under each key
 
                 value_counts = key_column.value_counts()
-                value_counts.to_excel(excel_writer = writer, sheet_name = 'Sheet5', startcol = 3*i + 1)         #Prints the counts of each value that the elements under the key have
+                value_counts.to_excel(excel_writer = writer, sheet_name = 'Sheet5', startcol = (3*i + 1))         #Prints the counts of each value that the elements under the key have
 
                 NaNs = df.apply(lambda x: sum(x.isnull()), axis=0)
-                NaNs.to_excel(excel_writer = writer, sheet_name = 'Sheet6', startcol = 3*i + 1)    #Prints the number of null valued data-points in the dataset
+                NaNs.to_excel(excel_writer = writer, sheet_name = 'Sheet6', startcol = (3*i + 1))    #Prints the number of null valued data-points in the dataset
                 i += 1
 
             writer.save()
