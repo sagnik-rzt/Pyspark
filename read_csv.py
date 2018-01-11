@@ -26,18 +26,25 @@ def open_dataframes(source = "/home/sagnikb/PycharmProjects/Pyspark/*.csv123", o
             for key in dict_keys:
                 key_column = df[key]
                 worksheet.write(i, 0, key_column.name)
+                n_elements = key_column.size
 
-                unique_list = pd.DataFrame(data = key_column.unique())  #Prints the unique elements in each key
-                unique_list.to_excel(excel_writer = writer, sheet_name = 'Sheet3', startcol = (3*i + 1))
+                unique_list = key_column.unique()
+                n_unique_elements = len(unique_list)
+                unique_fraction = n_unique_elements/ n_elements
+                worksheet.write(i, 3, "Fraction of unique elements")
+                worksheet.write(i, 4, unique_fraction)
+
+                unique_df = pd.DataFrame(data = unique_list)  #Prints the unique elements in each key
+                unique_df.to_excel(excel_writer = writer, sheet_name = 'Sheet3', startcol = (3*i + 1))
 
                 value_counts = key_column.value_counts()
                 value_counts.to_excel(excel_writer = writer, sheet_name = 'Sheet4', startcol = (3*i + 1))         #Prints the counts of each value that the elements under the key have
 
                 i += 1
 
+
             NaNs = df.apply(lambda x: sum(x.isnull()), axis = 0)
             NaNs.to_excel(excel_writer = writer, sheet_name = 'Sheet5', startcol = 0)    #Prints the number of null valued data-points in the dataset
-
 
             writer.save()
 
