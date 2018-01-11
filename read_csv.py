@@ -47,7 +47,6 @@ def open_dataframes(source = "/home/sagnikb/PycharmProjects/Pyspark/*.csv123", o
             NaNs.to_excel(excel_writer = writer, sheet_name = 'Sheet5', startcol = 0)    #Prints the number of null valued data-points in the dataset
 
             writer.save()
-
         file_count += 1
 
 
