@@ -3,11 +3,11 @@ import glob
 
 def open_dataframes(source = "/home/sagnikb/PycharmProjects/Pyspark/*.csv123", open_df = True):
 
-    file_count = 0
-    writer = pd.ExcelWriter(str(file_count) + "excel_file.xlsx", engine='xlsxwriter')
+    writer = pd.ExcelWriter("excel_file.xlsx", engine='xlsxwriter')
     workbook = writer.book
     worksheet1 = workbook.add_worksheet('Sheet1')
 
+    file_count = 0
     for filename in glob.glob(source) :
         print(filename)
 
@@ -55,7 +55,6 @@ def open_dataframes(source = "/home/sagnikb/PycharmProjects/Pyspark/*.csv123", o
             writer.save()
 
         file_count += 1
-
 
 
 open_dataframes()
