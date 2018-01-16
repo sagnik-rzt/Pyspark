@@ -71,7 +71,7 @@ def print_dataframes(file_queue):
                 i+= 1
 
 
-        filecount += 3
+        filecount += 2
 
 fq = generate_file_queue()
 print_dataframes(fq)
