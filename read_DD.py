@@ -47,10 +47,13 @@ def print_dataframes(file_queue):
                 worksheet = workbook.get_worksheet_by_name(name = sheets[m])
 
             df0 = pd.read_excel(io = str(filename), header = 2, sheetname = m)
-            dict = df0.to_dict(orient = 'series')
-            dict.pop('Data Type', None)
+            dict0 = df0.to_dict(orient = 'series')
+            dict0.pop('Data Type', None)
+            dict = {"Column" : dict0["Column Name"], "Missing %" : dict0["Missing Percentage"]}
+
 
             df = pd.DataFrame(data = dict)
+
             print(df)
             dict_keys = list(df.keys())
 
