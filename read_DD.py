@@ -33,14 +33,14 @@ def print_dataframes(file_queue):
             if filecount == 0 :
                 worksheet = workbook.add_worksheet(name= sheets[m])
                 worksheet.write(0, 1, "Bag1")
-                worksheet.write(0, 4, "Bag2")
-                worksheet.write(0, 7, "Bag3")
-                worksheet.write(0, 10, "Corp1")
-                worksheet.write(0, 13, "Corp2")
-                worksheet.write(0, 16, "Corp3")
-                worksheet.write(0, 19, "Fi1")
-                worksheet.write(0, 22, "Fi2")
-                worksheet.write(0, 25, "Fi3")
+                worksheet.write(0, 3, "Bag2")
+                worksheet.write(0, 5, "Bag3")
+                worksheet.write(0, 7, "Corp1")
+                worksheet.write(0, 9, "Corp2")
+                worksheet.write(0, 11, "Corp3")
+                worksheet.write(0, 13, "Fi1")
+                worksheet.write(0, 15, "Fi2")
+                worksheet.write(0, 17, "Fi3")
 
 
             else :
