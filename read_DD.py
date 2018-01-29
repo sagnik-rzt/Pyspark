@@ -68,7 +68,7 @@ def print_dataframes(file_queue):
                     worksheet.write(2 + j, 1 + i + filecount, element)
                     j += 1
 
-                i+= 1
+                i += 1
 
 
         filecount += 2
