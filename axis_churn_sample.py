@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import csv
 import datetime
 
 def week_index(date):
@@ -10,7 +9,7 @@ def week_index(date):
     year = int(date[5:])
 
     transaction_date = datetime.date(year = year, month = month, day = day)
-    old_date = datetime.date(year = 2016, month = 1, day = 4)
+    old_date = datetime.date(year = 2016, month = 1, day = 4    )
 
     m1 = old_date - datetime.timedelta(days = old_date.weekday())
     m2 = transaction_date - datetime.timedelta(days = transaction_date.weekday())
