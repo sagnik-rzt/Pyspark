@@ -18,9 +18,10 @@ def print_dd_details() :
     writer = pd.ExcelWriter("Savings_ac_DD.xlsx", engine = 'xlsxwriter')
     workbook = writer.book
 
-    folder_queue = generate_queue(source = "/home/sagnikb/sa_model_data_all/SAMPLE_*")
+    folder_queue = generate_queue(source = "/home/sagnikb/savings_sampled/sample_*")
 
     widthspace = 0
+    folder_count = 0
     for _ in range(int(folder_queue.qsize())) :
         folder_name = folder_queue.get()
         sample_file_queue = generate_queue(source = str(folder_name) + "/*.csv")
@@ -31,7 +32,7 @@ def print_dd_details() :
             filename = sample_file_queue.get()
             print(filename)
 
-            if widthspace == 0 :
+            if folder_count == 0 :
                 worksheet = workbook.add_worksheet(name = str(file_count))
                 worksheet.write(0, 1, "Sample_1")
                 worksheet.write(0, 5, "Sample_2")
@@ -67,6 +68,7 @@ def print_dd_details() :
 
             file_count += 1
 
+        folder_count += 1
         widthspace += 4
 
     workbook.close()
