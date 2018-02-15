@@ -16,7 +16,7 @@ def generate_queue(source):
     return file_queue
 
 
-def print_dd_details():
+def dd_details():
     folder_queue = generate_queue(source="/home/sagnikb/sa_model_data_all/SAMPLE_*")
 
     for _ in range(int(folder_queue.qsize())):
@@ -30,6 +30,7 @@ def print_dd_details():
             dsconfig_left = dict()
             dsconfig_left["path"] = str(filename)
             dsconfig_left["encoding"] = "utf-8"
+            dsconfig_left["header"] = "True"
 
             rzt_prod = RZTData(ExecContexts.prod)
 
@@ -37,15 +38,10 @@ def print_dd_details():
             columns = df.cols()
             nas = df.na_info()
 
-            for key in nas.keys():
-                uniques = df.unique(key = str(key))
-                unique_fraction = len(uniques)/df.count()
+            for key in columns:
+                uniques = df.unique(key=str(key))
+                unique_fraction = len(uniques) / df.count()
+                nas_count = [str(key)]["count"]
+                nas_fraction = nas_count / df.count()
 
-                nans = nas[str(key)]["count"]
-                nans_fraction = nans/df.count()
-                print(str(key), unique_fraction, nans_fraction)
-
-    exit()
-
-
-print_dd_details()
+                print((str(key), unique_fraction, nas_fraction))
