@@ -17,11 +17,11 @@ def generate_queue(source):
 
 
 def dd_details():
-    folder_queue = generate_queue(source="/home/sagnikb/sa_model_data_all/SAMPLE_*")
+    folder_queue = generate_queue(source = "/home/sagnikb/sa_model_data_all/SAMPLE_*")
 
     for _ in range(int(folder_queue.qsize())):
         folder_name = folder_queue.get()
-        sample_file_queue = generate_queue(source=str(folder_name) + "/*.csv")
+        sample_file_queue = generate_queue(source = str(folder_name) + "/*.csv")
         print(folder_name)
 
         for _ in range(int(sample_file_queue.qsize())):
@@ -39,7 +39,7 @@ def dd_details():
             nas = df.na_info()
 
             for key in columns:
-                uniques = df.unique(key=str(key))
+                uniques = df.unique(key = str(key))
                 unique_fraction = len(uniques) / df.count()
                 nas_count = nas[str(key)]["count"]
                 nas_fraction = nas_count / df.count()
