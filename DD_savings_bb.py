@@ -11,7 +11,7 @@ def generate_queue(source):
     file_queue = queue.Queue()
 
     for i in range(len(files)):
-        file_queue.put(item=files[i])
+        file_queue.put(item = files[i])
 
     return file_queue
 
@@ -41,7 +41,8 @@ def dd_details():
             for key in columns:
                 uniques = df.unique(key = str(key))
                 unique_fraction = len(uniques) / df.count()
-                nas_count = nas[str(key)]["count"]
-                nas_fraction = nas_count / df.count()
 
-                print((str(key), unique_fraction, nas_fraction))
+            if nas:
+                keys = nas.keys()
+                for key in keys:
+                    nas_count = nas[str(key)]["count"]
