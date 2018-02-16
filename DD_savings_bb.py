@@ -46,3 +46,4 @@ def dd_details():
                 keys = nas.keys()
                 for key in keys:
                     nas_count = nas[str(key)]["count"]
+                    nas_fraction = nas_count/df.count()
