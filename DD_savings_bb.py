@@ -41,6 +41,9 @@ def dd_details():
             for key in columns:
                 uniques = df.unique(key = str(key))
                 unique_fraction = len(uniques) / df.count()
+                class_is = df.data_type(column_name = str(key))
+                dtype = class_is.split()[1]
+
 
             if nas:
                 keys = nas.keys()
