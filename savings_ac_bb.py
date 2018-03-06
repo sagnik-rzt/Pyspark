@@ -42,28 +42,16 @@ def print_data():
             n_rows = df.count()
             n_cols = len(df.cols())
 
-            if "CUST_ID" in list(df.cols()):
+            if "CUST_ID" and "FORACID" in list(df.cols()) :
                 uniques_custid = len(df.unique(key="CUST_ID"))
-
-            else:
-                uniques_custid = 0
-
-            if "FORACID" in list(df.cols()):
-                uniques_foracid = len(df.unique(key="FORACID"))
-
-            else:
-                uniques_foracid = 0
-
-            if "CUST_ID" in list(df.cols()):
                 nas_custid = df["CUST_ID"].na_info()
-
-            else:
-                nas_custid = 0
-
-            if "FORACID" in list(df.cols()):
+                uniques_foracid = len(df.unique(key="FORACID"))
                 nas_foracid = df["FORACID"].na_info()
 
             else:
+                uniques_custid = 0
+                nas_custid = 0
+                uniques_foracid = 0
                 nas_foracid = 0
 
             print(base_name, filesize, n_rows, n_cols, uniques_custid, uniques_foracid, nas_custid, nas_foracid)
